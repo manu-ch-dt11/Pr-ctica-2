@@ -66,3 +66,54 @@ class SensorTemperatura(DispositivoIoT):
         """Sobrescribe método base (Polimorfismo)."""
         super().mostrar_datos()
         print(f"  Lectura: {self.temperatura:.2f}°C")
+
+class ActuadorLuz(DispositivoloT):
+def_init_(self, id_dispositivo: str):
+super()._ init_(id_dispositivo)
+self. intensidad = 0 # 0-100%
+@property
+def intensidad (self) -> int:
+return self._intensidad
+def ajustar_intensidad (self, valor:
+int):
+''''Ajusta la intensidad y
+enciende/apaga según
+corresponda.""''
+self. intensidad = max(0,
+min (100, int(valor)))
+if self.intensidad > 0:
+self.encender)
+else:
+self.apagar()
+print(f" [Luz {self.id_dispositivo}]
+-> se ajusta a {self.intensidad}%")
+def mostrar_datos(self):
+''''Sobrescribe método base
+(Polimorfismo)."''
+super ().mostrar_datos()
+print(f" Intensidad:
+{self.intensidad}%")
+
+#--- 3. EJECUCIÓN PRINCIPAL ---
+if _name_== "_main_":
+#--- Creación de 5 Objetos ---
+sensor_temp_sala =
+SensorTemperatura("TEMP_SALA_01"
+, 28.0)
+sensor_temp_cuarto =
+SensorTemperatura("TEMP_CUAR-
+TO_02", 22.0)
+sensor_hum_sala =
+SensorHumedad ("HUM_SALA_01",
+60.0)
+luz_sala =
+ActuadorLuz("LUZ_SALA_01")
+luz_cocina =
+ActuadorLuz("LUZ_COCINA_01")
+# CORRECCIÓN: Nombre de lista claro (dispositivos_iot)
+dispositivos_iot = [
+sensor_temp_sala, sensor_temp_cuarto,
+sensor_hum_sala,
+luz_sala,
+luz_cocina
+]
